@@ -5,10 +5,21 @@
         <%= form.submit "Gerar relatório", class:"btn btn-outline-secondary" %>
     <% end %>
     <div class="container process_wrapper">
-            <% if !@processes.nil? %>
+            <% if !@processes.nil?%>
                 <div class="owner_process">
-                    <p> <span class="process">Nome do advogado: </span><span><%= @query.capitalize()%></span></p>
-                    <p> <span class="process">Total de processos: </span> <span><%= @processes.count %></span></p>
+                    <% @lawyers.each do |lawyer| %>
+                        <% if !lawyer.cliente %>
+                            <p> <span class="process">Nome do advogado: </span><span><%= lawyer.nome %></span></p>
+                        <% else %>
+                            <p> <span class="process">Nome do cliente: </span><span><%= lawyer.nome %></span></p>
+                        <% end %>
+                        <p> <span class="process">CPF/CNPJ: </span><span><%= lawyer.cpf_cnpj%></span></p>
+                        <p> <span class="process">Email: </span><span><%= lawyer.email%></span></p>
+                        <p> <span class="process">Endereço:</span> <span><%= lawyer.endereço %></span></p>
+                        <% if !lawyer.cliente %>
+                            <p> <span class="process">Total de processos: </span> <span><%= @processes.count %></span></p>
+                        <%end%>
+                    <% end %>
                 </div>
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                         <% @processes.each do |process| %>
@@ -47,8 +58,8 @@
                             </div>
                         <% end %>
                 </div>
-            <% else %>
-                <p><%= @query %> não tem processo em seu nome</p>
-            <%end%>
+            <% elsif @searching %>
+                <p> <strong><%= @query.capitalize()%> não existe<strong></p>
+            <% end%>
     </div>
 </div>

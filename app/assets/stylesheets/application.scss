@@ -46,12 +46,12 @@
 }
 
 footer {
-  position: fixed;
+  position:sticky;
+  height: 70px;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #00315d;
-  color: white;
+  background-color: rgb(177, 183, 192);
   text-align: center;
 }
 
