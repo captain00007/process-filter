@@ -1,49 +1,54 @@
 <div class="container home_wrapper">
-    <h2 id="title text-center">Procurar processos</h2>
+    <h2 id="title">Procurar processos</h2>
     <%= form_with url: "/search", class:"d-flex", method: :get do |form| %>
         <%= form.text_field :query, class:"form-control me-2", placeholder:"Nome do advogado" %>
-        <%= form.submit "Gerar relatório", class:"btn btn-outline-dark" %>
+        <%= form.submit "Gerar relatório", class:"btn btn-outline-secondary" %>
     <% end %>
     <div class="container process_wrapper">
-        
-        <% if @processos %>
-            
-            <% @processos.each do |processo| %>
-                <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Accordion Item #1
-                        </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Accordion Item #2
-                        </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Accordion Item #3
-                        </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-                        </div>
-                    </div>
+            <% if !@processes.nil? %>
+                <div class="owner_process">
+                    <p> <span class="process">Nome do advogado: </span><span><%= @query.capitalize()%></span></p>
+                    <p> <span class="process">Total de processos: </span> <span><%= @processes.count %></span></p>
                 </div>
-            <% end %>
-            
-        <% end %>
-        
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <% @processes.each do |process| %>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= process.id %>" aria-expanded="false" aria-controls="flush-collapse<%= process.id %>">
+                                        <span class="process">Processo n.º: </span> <span><%= process.numero_processo %></span>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse<%= process.id %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <% client=search_client(process.cliente_id)%>
+                                        <p>
+                                            <span class="process">Nome do cliente:</span> <span><%= client.nome %></span>
+                                        </p>
+                                        <p>
+                                            <span class="process">CPF/CNPJ:</span> <span><%= client.cpf_cnpj %></span>
+                                        </p>
+                                        <p>
+                                            <span class="process">E-mail:</span> <span><%= client.email %></span>
+                                        </p>
+                                        <p>
+                                            <span class="process">Endereço:</span> <span><%= client.endereço %></span>
+                                        </p>
+                                        <p>
+                                            <span class="process">Proximo prazo do processo:</span> <span><%= process.proximo_prazo.strftime('%d/%m/%Y') %></span>
+                                        </p>
+                                        <%if process.arquivo %>
+                                            <p><span class="process">Arquivo:</span> <span>Sim</span> </p>
+                                        <%else%>
+                                            <p><span class="process">Arquivo:</span> <span>Não</span> </p>
+                                        <%end%>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                </div>
+            <% else %>
+                <p><%= @query %> não tem processo em seu nome</p>
+            <%end%>
     </div>
 </div>
