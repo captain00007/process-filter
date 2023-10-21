@@ -10,7 +10,23 @@
 * mysql (sudo mysql -v para ver se mysql está instalado)
 * Caso não têm as instalações veja abaixo como fazer
 
-### Depois de verificar ou fazer todas as intalações
+**Caso já têm as intalações mais versões diferentes**
+* Atualizar seu sistema para as versões do projeto
+
+**Caso têm problemas com dependencias de mysql**  
+* sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+* gem install mysql2
+
+**Caso tem problemas com rails** 
+* gem install rails
+
+**Caso tem problemas com psych**  
+ * sudo apt-get install libyaml-dev
+
+**Caso tem problemas com bundler**
+* gem install bundler
+
+### Depois de verificar ou fazer todas as instalações
 
 ### Criar a base de dados
 * Executar o arquivo script que está na pasta script do projeto para criar a base de dados e as tabelas (pode usar dBeaver ou Workbench para executar o script)
