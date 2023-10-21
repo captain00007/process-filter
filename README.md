@@ -60,6 +60,7 @@ Passo a passo:
 
 **-Installar mysql**  (Database)
     sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+    gem install mysql2
 
 **-Installar as dependencias do projeto usando using bundler**  
     bundle install
