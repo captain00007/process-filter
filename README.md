@@ -1,6 +1,6 @@
 # ProcessFilter
 ## Descrição do projeto
-* Sistema de busca de processos jurídicos com base no nome do advogado. Os usuários fornecem o nome do advogado como entrada, e o sistema responde com uma lista de todos os processos relacionados a esse advogado, recuperados na nossa base de dados.
+* Sistema de busca de processos jurídicos com base no nome do advogado. Os usuários fornecem o nome do advogado como entrada, depois clicar em gerar relatório e o sistema responde com uma lista de todos os processos relacionados a esse advogado, recuperados na nossa base de dados.
 
 ### Configurações para rodar o projeto no linux
 
