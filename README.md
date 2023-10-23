@@ -10,7 +10,7 @@
 * mysql (sudo mysql -v para ver se mysql está instalado)
 * Caso não têm as instalações veja abaixo como fazer
 
-**Caso já têm as intalações mais versões diferentes**
+**Caso já têm as intalações mas versões diferentes**
 * Atualizar seu sistema para as versões do projeto
 
 **Caso têm problemas com dependencias de mysql**  
@@ -37,6 +37,7 @@
   password: senha (subsitui senha pela sua senha)  
   ...
 #### Rodar o projeto
+* Abrir um terminal na pasta do projeto
 * bundle install (Instalar as dependencias do projeto usando using bundler) 
 * rails s (para rodar o projeto)
 * o projeto estára disponivel na porta 3000
